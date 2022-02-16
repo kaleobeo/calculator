@@ -1,3 +1,18 @@
+const numbers = document.querySelectorAll('.number')
+const operators = document.querySelectorAll('.operator')
+let screen = document.getElementById('text')
+let firstOperand = ''
+let secondOperand = null
+
+
+
+
+numbers.forEach((button) => {
+    button.addEventListener('click', () => {
+        firstOperand += button.textContent
+        screen.textContent = firstOperand
+    });
+});
 function add(a, b) {
     return a + b
 }
