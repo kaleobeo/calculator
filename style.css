@@ -1,6 +1,4 @@
-* {
-    border: 1px red solid;
-}
+
 
 body {
     display: flex;
@@ -14,12 +12,15 @@ body {
     height: 40rem;
     display: flex;
     flex-direction: column;
+    border: 5px solid black;
+    border-radius: 3px;
 }
 
 #results_box {
     flex: 1 1 0;
     display: flex;
     height: 100%;
+    background-color: black;
 }
 
 #result_container {
@@ -27,7 +28,7 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    background-color: #7C7C7C;
+    background-color: #6E7E85;
     color: white;
     font-size: 64px;
     margin: 8px;
@@ -38,8 +39,38 @@ body {
 }
 
 #buttons {
-    flex: 5 1 0;
+    flex: 3 1 0;
     height: 100%;
+    display: grid;
+    grid-template-rows: 5;
+
+}
+
+.row {
+    display: flex;
+}
+
+.button {
+    flex: 1;
+    background-color: #0E273C;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    border: black 1px solid;
+}
+
+.wide-button {
+    flex: 2;
+}
+
+.operators {
+    background-color: #B7CECE;
+}
+
+.special {
+    background-color: #BBBAC6;
 }
 
 
