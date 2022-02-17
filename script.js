@@ -38,7 +38,7 @@ operators.forEach((operatorButton) => {
 });
 
 equals.addEventListener('click', () => {
-    
+    //if (firstOperand === screen.textContent) return
     if (firstOperand) secondOperand = screen.textContent
     operate(firstOperand, operator, secondOperand)
     
