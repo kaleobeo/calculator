@@ -5,14 +5,42 @@ let screen = document.getElementById('text')
 let operator = null;
 let firstOperand = ''
 let secondOperand = null
+let replaceScreen = true
+let del = document.querySelector('.del')
+let clear = document.querySelector('.clear')
+let decimal = document.querySelector('.wide-button')
+let plusMinus = document.querySelector('.plus-minus')
 
 
+del.addEventListener('click', () => {
+    if (screen.textContent == 0) return
+    nums = screen.textContent
+    screen.textContent = nums.substring(0, (nums.length - 1))
+});
 
+decimal.addEventListener('click', () => {
+    if (screen.textContent.includes('.') || screen.textContent == 0) return
+    screen.textContent += '.'
+});
+
+clear.addEventListener('click', () => {
+    screen.textContent = 0
+    firstOperand = ""
+    secondOperand = null
+    operator = null
+});
+
+plusMinus.addEventListener('click', () => {
+    screen.textContent.includes('-') ? screen.textContent = screen.textContent.split('').splice(0, 1) : screen.textContent = '-' + `${screen.textContent}`
+});
 
 numbers.forEach((button) => {
     button.addEventListener('click', () => {
-        if ( (screen.textContent == 0)) screen.textContent = ""
-        if (screen.textContent === firstOperand) screen.textContent = ""
+        
+        if (replaceScreen) {
+            screen.textContent = ""
+            replaceScreen = false
+        }
         screen.textContent += button.textContent
 
 
@@ -22,7 +50,7 @@ numbers.forEach((button) => {
 operators.forEach((operatorButton) => {
 
     operatorButton.addEventListener('click', () => {
-        if (firstOperand === screen.textContent) return
+        replaceScreen = true
         operate(firstOperand, operator, secondOperand)
         operator = operatorButton.textContent;
 
@@ -41,7 +69,7 @@ equals.addEventListener('click', () => {
     //if (firstOperand === screen.textContent) return
     if (firstOperand) secondOperand = screen.textContent
     operate(firstOperand, operator, secondOperand)
-    
+
 });
 
 let add = (a, b) => {
@@ -64,8 +92,8 @@ let divide =(a, b) => {
 function operate(num, operator, num2) {
     if (secondOperand === null) return
 
-    let first = parseInt(num)
-    let second = parseInt(num2)
+    let first = parseFloat(num)
+    let second = parseFloat(num2)
     if (!second && second != 0) return
 
     let result;
@@ -88,5 +116,5 @@ function operate(num, operator, num2) {
     screen.textContent = result
     firstOperand = ""
     secondOperand = null
-    operator = null
+
 };
