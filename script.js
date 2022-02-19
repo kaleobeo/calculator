@@ -13,7 +13,7 @@ let plusMinus = document.querySelector('.plus-minus')
 
 
 del.addEventListener('click', () => {
-    if (screen.textContent == 0) return
+    if ( (screen.textContent == 0) || screen.textContent == '-0') return
     nums = screen.textContent
     screen.textContent = nums.substring(0, (nums.length - 1))
 });
@@ -31,13 +31,18 @@ clear.addEventListener('click', () => {
 });
 
 plusMinus.addEventListener('click', () => {
-    screen.textContent.includes('-') ? screen.textContent = screen.textContent.split('').splice(0, 1) : screen.textContent = '-' + `${screen.textContent}`
+    screen.textContent.includes('-') ? screen.textContent = screen.textContent.substr(1) : screen.textContent = '-' + `${screen.textContent}`
+
 });
 
 numbers.forEach((button) => {
     button.addEventListener('click', () => {
         
         if (replaceScreen) {
+            if (screen.textContent == '-0') {
+                screen.textContent = `-${button.textContent}`
+                return
+            }
             screen.textContent = ""
             replaceScreen = false
         }
