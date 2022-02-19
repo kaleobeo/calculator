@@ -74,5 +74,11 @@ body {
     background-color: #BBBAC6;
 }
 
+#active,
+.operators:hover {
+    background-color: #D3DFB8;
+}
+
+
 
 

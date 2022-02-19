@@ -31,18 +31,23 @@ clear.addEventListener('click', () => {
 });
 
 plusMinus.addEventListener('click', () => {
+    if (replaceScreen) {
+        screen.textContent = '0'
+        replaceScreen = false
+    }
     screen.textContent.includes('-') ? screen.textContent = screen.textContent.substr(1) : screen.textContent = '-' + `${screen.textContent}`
-
+    
 });
 
 numbers.forEach((button) => {
     button.addEventListener('click', () => {
         
+        if (screen.textContent == '-0') {
+            screen.textContent = `-${button.textContent}`
+            return
+        }
+        
         if (replaceScreen) {
-            if (screen.textContent == '-0') {
-                screen.textContent = `-${button.textContent}`
-                return
-            }
             screen.textContent = ""
             replaceScreen = false
         }
@@ -63,7 +68,7 @@ operators.forEach((operatorButton) => {
             firstOperand = screen.textContent
         } else secondOperand = screen.textContent
 
-
+        operatorButton.id = "active"
 
         
         
@@ -118,6 +123,9 @@ function operate(num, operator, num2) {
         default:
             result = "OOPS"
     }
+    operators.forEach((operator) => {
+        operator.removeAttribute('id')
+    })
     screen.textContent = result
     firstOperand = ""
     secondOperand = null
