@@ -26,6 +26,7 @@ decimal.addEventListener('click', () => {
 clear.addEventListener('click', () => {
     screen.textContent = 0
     firstOperand = ""
+    replaceScreen = true
     secondOperand = null
     operator = null
 });
@@ -42,6 +43,8 @@ plusMinus.addEventListener('click', () => {
 numbers.forEach((button) => {
     button.addEventListener('click', () => {
         
+        if (screen.textContent.length > 9) return
+
         if (screen.textContent == '-0') {
             screen.textContent = `-${button.textContent}`
             return
@@ -126,7 +129,7 @@ function operate(num, operator, num2) {
     operators.forEach((operator) => {
         operator.removeAttribute('id')
     })
-    screen.textContent = result
+    screen.textContent = Math.floor(result*1000)/1000
     firstOperand = ""
     secondOperand = null
 
