@@ -16,10 +16,14 @@ del.addEventListener('click', () => {
     if ( (screen.textContent == 0) || screen.textContent == '-0') return
     nums = screen.textContent
     screen.textContent = nums.substring(0, (nums.length - 1))
+    if (screen.textContent === "") screen.textContent = 0
+    if (screen.textContent === "-") screen.textContent = "-0"
 });
 
 decimal.addEventListener('click', () => {
+    if (replaceScreen) screen.textContent = "0"
     if (screen.textContent.includes('.')) return
+
     screen.textContent += '.'
     replaceScreen = false
 });
@@ -55,6 +59,8 @@ numbers.forEach((button) => {
             return
         }
         
+        if (screen.textContent === "0") replaceScreen = true
+
         if (replaceScreen) {
             screen.textContent = ""
             replaceScreen = false
