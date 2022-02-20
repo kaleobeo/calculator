@@ -74,6 +74,8 @@ operators.forEach((operatorButton) => {
                 operator.removeAttribute('id')
             })
             operatorButton.id = "active"
+            firstOperand = screen.textContent
+            replaceScreen = true
             return
         }
         replaceScreen = true
@@ -83,7 +85,7 @@ operators.forEach((operatorButton) => {
 
         if (!firstOperand) {
             firstOperand = screen.textContent
-        } else secondOperand = screen.textContent
+        } //else secondOperand = screen.textContent
 
         operatorButton.id = "active"
 
@@ -94,10 +96,11 @@ operators.forEach((operatorButton) => {
 
 equals.addEventListener('click', () => {
     //if (firstOperand === screen.textContent) return
+    if (replaceScreen) return
     if (firstOperand) secondOperand = screen.textContent
     operate(firstOperand, operator, secondOperand)
     operator = null;
-    replaceScreen = false
+    replaceScreen = true
 });
 
 let add = (a, b) => {
@@ -152,5 +155,5 @@ function operate(num, operator, num2) {
     firstOperand = ""
     secondOperand = null
     replaceScreen = true
-    operator = null
+    //operator = null
 };
