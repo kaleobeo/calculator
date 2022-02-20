@@ -19,8 +19,9 @@ del.addEventListener('click', () => {
 });
 
 decimal.addEventListener('click', () => {
-    if (screen.textContent.includes('.') || screen.textContent == 0) return
+    if (screen.textContent.includes('.')) return
     screen.textContent += '.'
+    replaceScreen = false
 });
 
 clear.addEventListener('click', () => {
