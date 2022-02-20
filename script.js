@@ -30,6 +30,10 @@ clear.addEventListener('click', () => {
     replaceScreen = true
     secondOperand = null
     operator = null
+
+    operators.forEach((operator) => {
+        operator.removeAttribute('id')
+    })
 });
 
 plusMinus.addEventListener('click', () => {
@@ -65,6 +69,7 @@ operators.forEach((operatorButton) => {
 
     operatorButton.addEventListener('click', () => {
         replaceScreen = true
+        if (firstOperand) secondOperand = screen.textContent
         operate(firstOperand, operator, secondOperand)
         operator = operatorButton.textContent;
 
@@ -99,16 +104,16 @@ let multiply = (a, b) => {
 }
 
 let divide =(a, b) => {
-    if (b == 0) return "undefined"
+    if (b === 0) return undefined
     return a / b
 }
 
 function operate(num, operator, num2) {
-    if (secondOperand === null) return
+    if (!secondOperand) return
 
     let first = parseFloat(num)
     let second = parseFloat(num2)
-    if (!second && second != 0) return
+    //if (!second && second != 0) return
 
     let result;
     switch (operator) {
@@ -130,8 +135,12 @@ function operate(num, operator, num2) {
     operators.forEach((operator) => {
         operator.removeAttribute('id')
     })
+    if (result === undefined) {
+        screen.textContent = "undefined"
+        return
+    }
     screen.textContent = Math.floor(result*1000)/1000
     firstOperand = ""
     secondOperand = null
-
+    replaceScreen = true
 };
