@@ -68,6 +68,14 @@ numbers.forEach((button) => {
 operators.forEach((operatorButton) => {
 
     operatorButton.addEventListener('click', () => {
+        if (replaceScreen) {
+            operator = operatorButton.textContent
+            operators.forEach((operator) => {
+                operator.removeAttribute('id')
+            })
+            operatorButton.id = "active"
+            return
+        }
         replaceScreen = true
         if (firstOperand) secondOperand = screen.textContent
         operate(firstOperand, operator, secondOperand)
@@ -88,7 +96,8 @@ equals.addEventListener('click', () => {
     //if (firstOperand === screen.textContent) return
     if (firstOperand) secondOperand = screen.textContent
     operate(firstOperand, operator, secondOperand)
-
+    operator = null;
+    replaceScreen = false
 });
 
 let add = (a, b) => {
@@ -110,10 +119,10 @@ let divide =(a, b) => {
 
 function operate(num, operator, num2) {
     if (!secondOperand) return
-
+    //if (replaceScreen) return
     let first = parseFloat(num)
     let second = parseFloat(num2)
-    //if (!second && second != 0) return
+    
 
     let result;
     switch (operator) {
@@ -143,4 +152,5 @@ function operate(num, operator, num2) {
     firstOperand = ""
     secondOperand = null
     replaceScreen = true
+    operator = null
 };
